@@ -1,52 +1,50 @@
 const mongoose = require('mongoose');
 const Task = mongoose.model('Tasks');
 
-exports.list = function (req, res) {
-    Task.find({}, function (err, task) {
-        if (err) {
-            res.send(err);
+exports.list = (request, response) => {
+    Task.find({}, (error, task) => {
+        if (error) {
+            response.send(error);
         }
-        res.json(task);
+        response.json(task);
     });
 };
 
-exports.create = function (req, res) {
-    const new_task = new Task(req.body);
-    new_task.save(function (err, task) {
-        if (err) {
-            res.send(err);
+exports.create = (request, response) => {
+    const newTask = new Task(request.body);
+    newTask.save((error, task) => {
+        if (error) {
+            response.send(error);
         }
-        res.json(task);
+        response.json(task);
     });
 };
 
-
-exports.get = function (req, res) {
-    Task.findById(req.params.taskId, function (err, task) {
-        if (err) {
-            res.send(err);
+exports.get = (request, response) => {
+    Task.findById(request.params.taskId, (error, task) => {
+        if (error) {
+            response.send(error);
         }
-        res.json(task);
+        response.json(task);
     });
 };
 
-
-exports.update = function (req, res) {
-    Task.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, function (err, task) {
-        if (err) {
-            res.send(err);
+exports.update = (request, response) => {
+    Task.findOneAndUpdate({_id: request.params.taskId}, request.body, {new: true}, (error, task) => {
+        if (error) {
+            response.send(error);
         }
-        res.json(task);
+        response.json(task);
     });
 };
 
-exports.remove = function (req, res) {
+exports.remove = (request, response) => {
     Task.remove({
-        _id: req.params.taskId
-    }, function (err) {
-        if (err) {
-            res.send(err);
+        _id: request.params.taskId
+    }, function (error) {
+        if (error) {
+            response.send(error);
         }
-        res.json({message: 'Task successfully deleted'});
+        response.json({message: 'Task successfully deleted'});
     });
 };
