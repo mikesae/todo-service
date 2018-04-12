@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const TaskSchema = new Schema({
     name: {
         type: String,
-        required: 'Please enter the task'
+        required: 'Please specify the task name as a key/value pair.  e.g., { name: "Wash Car" }'
     },
     Created_date: {
         type: Date,

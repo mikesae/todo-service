@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-require('./api/models/todoListModel');
+require('./api/models/list-model');
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-const routes = require('./api/routes/todoListRoutes'); //importing route
+const routes = require('./api/routes/list-routes'); //importing route
 routes(app); //register the route
 
 
